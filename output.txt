@@ -1,0 +1,40 @@
+Initial Balance in Savings Account: $120.5
+Deposited:50
+Balance after deposit: $170.5
+Withdrawn:30
+Balance after withdrawal: $140.5
+Balance after monthly process: $141.08541666666667
+BankAccount Class UML Diagram:
+BankAccount <-- SavingsAccount : extends
+-----------------------------
+- balance: double
+- numOfDeposits: int
+- numOfWithdrawals: int
+- annualInterestRate: double
+- monthlyServiceCharge: double
+-----------------------------
++ BankAccount(balance: double, annualInterestRate: double)
++ deposit(amount: double)
++ withdraw(amount: double)
++ calcInterest()
++ monthlyProcess()
++ getBalance(): double
++ getNumOfDeposits(): int
++ getNumOfWithdrawals(): int
++ getAnnualInterestRate(): double
++ getMonthlyServiceCharge(): double
++ setMonthlyServiceCharge(monthlyServiceCharge: double)
+
+
+SavingsAccount Class UML Diagram:
+SavingsAccount --> BankAccount : extends
+--------------------------------------
+- active: boolean
+--------------------------------------
++ SavingsAccount(balance: double, annualInterestRate: double)
++ isActive(): boolean
++ setActive(active: boolean)
++ withdraw(amount: double)
++ deposit(amount: double)
++ monthlyProcess()
+

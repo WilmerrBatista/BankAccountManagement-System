@@ -1,0 +1,22 @@
+Bank Account Management System
+
+This project implements a simple bank account management system with a graphical user interface (GUI) using Java Swing.
+
+
+Instructions:
+1. Compilation:
+   - Ensure you have Java Development Kit (JDK) installed on your system.
+   - Open a command prompt or terminal.
+   - Navigate to the directory containing the source code files (BankAccountGUI.java, BankAccount.java, SavingsAccount.java).
+   - Compile the source code using the following command:
+     javac BankAccountGUI.java BankAccount.java SavingsAccount.java
+
+2. Execution:
+   - After compiling the source code, execute the BankAccountGUI class to launch the graphical user interface:
+     java BankAccountGUI
+
+3. Using the GUI:
+   - Once the GUI is launched, you can interact with it to perform various banking operations.
+   - Enter the deposit amount in the "Deposit" text field and click the "Deposit" button to deposit money into your account.
+   - Enter the withdrawal amount in the "Withdraw" text field and click the "Withdraw" button to withdraw money from your account.
+   - Click the "Monthly Process" button to perform monthly processing on your account, including applying service charges for excess withdrawals.

@@ -34,6 +34,10 @@ public abstract class BankAccount {
      * @param amount
      */
     public void deposit(double amount) {
+        requirePositiveAmount(amount);
+        if (!Double.isFinite(balance + amount)) {
+            throw new IllegalArgumentException("Deposit would exceed the supported balance.");
+        }
         balance += amount;
         numOfDeposits++;
     }
@@ -43,8 +47,18 @@ public abstract class BankAccount {
      * @param amount
      */
     public void withdraw(double amount) {
+        requirePositiveAmount(amount);
+        if (amount > balance) {
+            throw new IllegalArgumentException("Insufficient balance.");
+        }
         balance -= amount;
         numOfWithdrawals++;
+    }
+
+    protected static void requirePositiveAmount(double amount) {
+        if (!Double.isFinite(amount) || amount <= 0) {
+            throw new IllegalArgumentException("Enter a finite amount greater than zero.");
+        }
     }
 
     /**

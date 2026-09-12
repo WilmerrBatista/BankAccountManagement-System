@@ -50,8 +50,7 @@ public class SavingsAccount extends BankAccount {
     public void withdraw(double amount) {
         // Check if the account is active
         if (!isActive()) {
-            System.out.println("Cannot withdraw from inactive account.");
-            return;
+            throw new IllegalStateException("Cannot withdraw from an inactive account.");
         }
         // Call the withdraw method from the superclass
         super.withdraw(amount);

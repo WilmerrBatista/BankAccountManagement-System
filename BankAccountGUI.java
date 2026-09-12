@@ -117,10 +117,11 @@ public class BankAccountGUI extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        try {
         // Check if the source of the event is the Deposit button
         if (e.getSource() == btnDeposit) {
             // Parse the amount entered in the deposit text field
-            double amount = Double.parseDouble(txtDeposit.getText());
+            double amount = parseAmount(txtDeposit.getText());
             // Check if the amount is less than or equal to 0
             if (amount <= 0) {
                 // Display an error message if the amount is not positive
@@ -139,7 +140,7 @@ public class BankAccountGUI extends JFrame implements ActionListener {
         // Check if the source of the event is the Withdraw button
         if (e.getSource() == btnWithdraw) {
             // Parse the amount entered in the withdraw text field
-            double amount = Double.parseDouble(txtWithdraw.getText());
+            double amount = parseAmount(txtWithdraw.getText());
             // Check if the amount is greater than the balance
             if (amount > savingsAccount.getBalance()) {
                 // Display an error message if the amount exceeds the balance
@@ -163,6 +164,20 @@ public class BankAccountGUI extends JFrame implements ActionListener {
             txtBalance.setText("Your Balance: $" + decimalFormat.format(savingsAccount.getBalance()));
             outputArea.append("Monthly process performed. New balance: $" + decimalFormat.format(savingsAccount.getBalance()) + "\n");
 
+        }
+        } catch (IllegalArgumentException | IllegalStateException error) {
+            JOptionPane.showMessageDialog(this, error.getMessage(),
+                    "Transaction not completed", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    static double parseAmount(String text) {
+        try {
+            double amount = Double.parseDouble(text.trim());
+            BankAccount.requirePositiveAmount(amount);
+            return amount;
+        } catch (NumberFormatException error) {
+            throw new IllegalArgumentException("Enter a valid number, such as 25.50.");
         }
     }
 }
